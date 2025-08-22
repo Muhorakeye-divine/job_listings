@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+:root{
+    --primary-green-400  :hsl(180,29%,50%);
+    --neutral-gray-400   :hsl(180,8%,52%);
+    --neutral-green-900  :hsl(180,14%,20%);
+    --neutral-green-50   :hsl(180,52%,96%);
+
+        background-color: var(--neutral-green-50);
+    
+}
