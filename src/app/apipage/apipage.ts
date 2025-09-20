@@ -19,7 +19,7 @@ export class Apipage implements OnInit {
    this.getHolidays();
  }
   getHolidays(): void{
-    this.holidayService.getHolidays('Canada', 2025).subscribe({
+    this.holidayService.getHolidays('Canada').subscribe({
       next: (data) =>{
         this.holidays = data;
       },

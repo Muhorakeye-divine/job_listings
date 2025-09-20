@@ -14,7 +14,7 @@
 <body>
  <header class="position-relative">
   <div>
-  <button (click)="pageapi()">PageApi</button>
+  <button class="btn p-4 fw-bold bg-danger" (click)="pageapi()">PageApi</button>
   <router-outlet></router-outlet>
   </div>
 
@@ -28,32 +28,40 @@
  </header>
  <main style="overflow-x: hidden;">
   <div class="row" id="row">
-    <div *ngFor="let item of items">
-    <div class="card col-10 mx-auto mt-5 d-flex position-relative shadow">
-      
-        <img [src]="'../assets/'+item.logo" alt="images">
-        <div class="card-body pe-sm-1 pe-md-0 pt-4 main">
-  <h5 class="card-title Company mt-2">{{item.company}}
-    <span class="new ms-3 me-1" *ngIf="item.new">NEW!</span>
-    <span class="featured" *ngIf="item.featured">FEATURED</span>
-    </h5>
-    <h6 class="card-tit my-3 fw-bold">{{item.position}}</h6>
-    <h6 class="text-gray d-flex align-items-center gap-2">
-      <span class="ago">{{item.postedAt}}</span>
-      <span class="time">{{item.contract }}</span>
-      <span class="location">{{item.location}}</span>
-    </h6>
-    <hr class="mb- mt-3">
-        </div>
-        <div class="card-body skills pt-0 d-flex gap-3 flex-wrap filters" id="{{item.id}}">
-          <h6 class="p-2 rounded-1">{{item.role}}</h6>
-          <h6 class="p-2 rounded-1">{{item.level}}</h6>
-          <h6 class="p-2 rounded-1" *ngFor="let lang of item.languages">{{lang}}</h6>
-          <h6 class="p-2 rounded-1" *ngFor="let too of item.tools">{{too}}</h6>
-      </div>
+      @for (item of items; track item.id) {
+        <div class="card col-10 mx-auto mt-5 d-flex position-relative shadow">
+          <img [src]="'../assets/'+item.logo" alt="images">
+          <div class="card-body pe-sm-1 pe-md-0 pt-4 main">
+            <h5 class="card-title Company mt-2">{{item.company}}
+              @if (item.new) {
+                <span class="new ms-3 me-1">NEW!</span>
+              }
+              @if (item.featured) {
+                <span class="featured">FEATURED</span>
+              }
+            </h5>
+            <h6 class="card-tit my-3 fw-bold">{{item.position}}</h6>
+            <h6 class="text-gray d-flex align-items-center gap-2">
+              <span class="ago">{{item.postedAt}}</span>
+              <span class="time">{{item.contract}}</span>
+              <span class="location">{{item.location}}</span>
+            </h6>
+            <hr class="mb- mt-3">
+          </div>
+          <div class="card-body skills pt-0 d-flex gap-3 flex-wrap filters" id="{{item.id}}">
+            <h6 class="p-2 rounded-1">{{item.role}}</h6>
+            <h6 class="p-2 rounded-1">{{item.level}}</h6>
+            @for (lang of item.languages; track lang) {
+              <h6 class="p-2 rounded-1">{{lang}}</h6>
+            }
+            @for (too of item.tools; track too) {
+              <h6 class="p-2 rounded-1">{{too}}</h6>
+            }
+          </div>
+          </div>
+      }
     </div>
-</div>
-  </div>
+          
   </main>
 </body>
 

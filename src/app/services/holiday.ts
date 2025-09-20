@@ -7,9 +7,9 @@ import { HolidayModel } from '../models/holiday.model';
   providedIn: 'root'
 })
 export class Holiday {
-  private apiUrl ='https://api.api-ninjas.com/v1/holidays?country=CA&year=2025&type=public_holiday';
+  private apiUrl ='https://api.api-ninjas.com/v1/holidays';
   constructor(private http: HttpClient){}
-  getHolidays(country:string, year:number): Observable<HolidayModel[]>{
-    return this.http.get<HolidayModel[]>(`${this.apiUrl}?country=${country}}&year=${year}&type=public`);
+  getHolidays(country:string): Observable<HolidayModel[]>{
+    return this.http.get<HolidayModel[]>(`${this.apiUrl}?country=${country}&type=public_holiday`);
   }
 }

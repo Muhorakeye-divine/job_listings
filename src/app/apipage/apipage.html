@@ -8,20 +8,29 @@
   
 </head>
 <body>
-    <header>
-        <div class="holiday-container">
-            <h3>Jours feries au Canada en 2025</h3>
-            <ul>
-                <li *ngFor="let holiday of holidays">
-                    <span>
-                       {{holiday.name}} - {{holiday.date}}
-                    </span>
-                    
-                     </li> 
-            </ul>
-            <p *ngIf="error" class="error">{{error}}</p>
-        </div>
+     <header>
+      <div class="holiday-container">
+       <h3>Jours fériés au Canada en 2025</h3>
+
+      
+      @if (holidays.length > 0) {
+        <ul>
+          @for (holiday of holidays; track holiday.date) {
+            <li>
+              <div class="calendar-icon"></div>
+              <span>{{ holiday.name }} - {{ holiday.date }}</span>
+            </li>
+          }
+        </ul>
+      } @else {
+        
+        @if (error) {
+          <p class="error">{{ error }}</p>
+        }
+      }
+      </div>
     </header>
+    
     </body>
     </html>
     
